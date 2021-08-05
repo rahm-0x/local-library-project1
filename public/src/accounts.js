@@ -8,6 +8,7 @@ function sortAccountsByLastName(accounts) {
 
 
 function getTotalNumberOfBorrows(account, books) {
+  //filter method added for completed submission.
   let total = 0
   let accountId = account.id
   return books.reduce((acc, book) => {
