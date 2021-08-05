@@ -9,16 +9,15 @@ function sortAccountsByLastName(accounts) {
 
 function getTotalNumberOfBorrows(account, books) {
   let total = 0
-  for(let i = 0; i < books.length; i++){
-    let borrowed = (books[i].borrows)
-      for(let y = 0; y < borrowed.length; y++){
-        let eachBorrow = borrowed[y]
-        if(eachBorrow.id === account.id){
-          total++
-        }
-      }
-  }
-  return total;
+  let accountId = account.id
+  return books.reduce((acc, book) => {
+    return (
+      acc +
+      book.borrows
+        .filter(borrow => borrow.id === accountId)
+        .reduce((accumulatorBorrows) => accumulatorBorrows + 1, total)
+    );
+  }, 0);
 }
 
 function getBooksPossessedByAccount(account, books, authors) {
